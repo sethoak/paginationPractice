@@ -67,9 +67,9 @@ namespace GenericsExample
                 new Book { Id = 21, Author = "Franz Kafka", Title = "Stories" },
             };
 
-            //instace of the BookPager from BookPager.cs
-            var bookPager = new Pager<Book>();
-            bookPager.AllRecords = allBooks;
+            //instace of the BookPager from BookPager.cs. New Pager of type Book.
+            var bookPager = new Pager<Book>(allBooks);
+            var dvdPager = new Pager<DVD>(allMovies);
 
             Console.WriteLine("Which listings would you like to see?");
             Console.WriteLine("1. Movies");
@@ -80,7 +80,34 @@ namespace GenericsExample
 
             if (selection == "1")
             {
-                allMovies.ForEach(m => Console.WriteLine($"{m.Id}: {m.Title} ({m.Genre})"));
+                var firstPage = dvdPager.GetCurrentPage();
+                firstPage.ForEach(m => Console.WriteLine($"{m.Id}: {m.Title} by {m.Genre}"));
+
+                //able to go forward and backwards in the list of 5
+                while (true)
+                {
+                    Console.WriteLine("Type Next or Prev to go forward or back");
+                    var forwardOrBack = Console.ReadLine();
+
+                    //clear console so it won't show the previous 5 when you click next/prev. It'll blow up in GitBash!!!!
+                    //Console.Clear();
+
+                    if (forwardOrBack == "Next")
+                    {
+                        var nextPage = dvdPager.GetNextPage();
+                        nextPage.ForEach(m => Console.WriteLine($"{m.Id}: {m.Title} by {m.Genre}"));
+                    }
+                    else if (forwardOrBack == "Prev")
+                    {
+                        var previousPage = dvdPager.GetPreviousPage();
+                        previousPage.ForEach(m => Console.WriteLine($"{m.Id}: {m.Title} by {m.Genre}"));
+                    }
+                    //gets out of the loop with the use of 'break'
+                    else
+                    {
+                        break;
+                    }
+                }
             }
 
             if (selection == "2")
