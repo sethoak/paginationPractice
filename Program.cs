@@ -68,7 +68,7 @@ namespace GenericsExample
             };
 
             //instace of the BookPager from BookPager.cs
-            var bookPager = new BookPager();
+            var bookPager = new Pager<Book>();
             bookPager.AllRecords = allBooks;
 
             Console.WriteLine("Which listings would you like to see?");
@@ -94,8 +94,8 @@ namespace GenericsExample
                     Console.WriteLine("Type Next or Prev to go forward or back");
                     var forwardOrBack = Console.ReadLine();
 
-                    //clear console so it won't show the previous 5 when you click next/prev
-                    Console.Clear();
+                    //clear console so it won't show the previous 5 when you click next/prev. It'll blow up in GitBash!!!!
+                    //Console.Clear();
 
                     if (forwardOrBack == "Next")
                     {
