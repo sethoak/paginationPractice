@@ -9,38 +9,38 @@ namespace GenericsExample
         {
             var allMovies = new List<DVD>
             {
-                new DVD { Id = 1, Title = "Out in the Dark", Genre = "Drama|Romance"},
-                new DVD { Id = 2, Title = "Zapped!", Genre = "Comedy|Sci-Fi"},
-                new DVD { Id = 3, Title = "Neighbours", Genre = "Comedy"},
-                new DVD { Id = 4, Title = "Thing, The", Genre = "Action|Horror|Sci-Fi|Thriller"},
-                new DVD { Id = 5, Title = "Around the Block", Genre = "Drama"},
-                new DVD { Id = 6, Title = "Corto Maltese: Under the Sign of Capricorn (Sous le signe du capricorne)", Genre = "Animation|Drama|Romance|War"},
-                new DVD { Id = 7, Title = "Warlock: The Armageddon", Genre = "Horror"},
-                new DVD { Id = 8, Title = "Nico and Dani", Genre = "Comedy|Drama|Romance"},
-                new DVD { Id = 9, Title = "What Doesn't Kill You", Genre = "Crime|Drama"},
-                new DVD { Id = 10, Title = "Reap the Wild Wind", Genre = "Action|Adventure|Drama"},
-                new DVD { Id = 11, Title = "Last Days Here", Genre = "Documentary"},
-                new DVD { Id = 12, Title = "Parental Guidance", Genre = "Comedy"},
-                new DVD { Id = 13, Title = "Saving Shiloh", Genre = "Children|Drama"},
-                new DVD { Id = 14, Title = "Moonshot", Genre = "Drama"},
-                new DVD { Id = 15, Title = "Kadosh", Genre = "Drama"},
-                new DVD { Id = 16, Title = "Stanley Kubrick: A Life in Pictures", Genre = "Documentary"},
-                new DVD { Id = 17, Title = "Clown and the Kid, The", Genre = "Drama"},
-                new DVD { Id = 18, Title = "Confetti", Genre = "Comedy"},
-                new DVD { Id = 19, Title = "Setup (Set Up)", Genre = "Action|Crime|Drama"},
-                new DVD { Id = 20, Title = "Captain Video: Master of the Stratosphere", Genre = "Adventure|Sci-Fi"},
-                new DVD { Id = 21, Title = "Underworld: Evolution", Genre = "Action|Fantasy|Horror"},
-                new DVD { Id = 22, Title = "Nothing Left to Fear", Genre = "Horror"},
-                new DVD { Id = 23, Title = "Shanghai Gesture, The", Genre = "Drama|Film-Noir"},
-                new DVD { Id = 24, Title = "In My Father's Den", Genre = "Drama"},
-                new DVD { Id = 25, Title = "Scapegoat, The", Genre = "Drama"},
-                new DVD { Id = 26, Title = "None But the Lonely Heart", Genre = "Drama|Romance"},
-                new DVD { Id = 27, Title = "Cameron's Closet", Genre = "Horror"},
-                new DVD { Id = 28, Title = "Inferno", Genre = "Drama"},
-                new DVD { Id = 29, Title = "Splatter University", Genre = "Horror"},
-                new DVD { Id = 30, Title = "Flash Point", Genre = "Action"}
+                new DVD { Id = 1, Title = "Out in the Dark", Genre = "Drama|Romance" },
+                new DVD { Id = 2, Title = "Zapped!", Genre = "Comedy|Sci-Fi" },
+                new DVD { Id = 3, Title = "Neighbours", Genre = "Comedy" },
+                new DVD { Id = 4, Title = "Thing, The", Genre = "Action|Horror|Sci-Fi|Thriller" },
+                new DVD { Id = 5, Title = "Around the Block", Genre = "Drama" },
+                new DVD { Id = 6, Title = "Corto Maltese: Under the Sign of Capricorn (Sous le signe du capricorne)", Genre = "Animation|Drama|Romance|War" },
+                new DVD { Id = 7, Title = "Warlock: The Armageddon", Genre = "Horror" },
+                new DVD { Id = 8, Title = "Nico and Dani", Genre = "Comedy|Drama|Romance" },
+                new DVD { Id = 9, Title = "What Doesn't Kill You", Genre = "Crime|Drama" },
+                new DVD { Id = 10, Title = "Reap the Wild Wind", Genre = "Action|Adventure|Drama" },
+                new DVD { Id = 11, Title = "Last Days Here", Genre = "Documentary" },
+                new DVD { Id = 12, Title = "Parental Guidance", Genre = "Comedy" },
+                new DVD { Id = 13, Title = "Saving Shiloh", Genre = "Children|Drama" },
+                new DVD { Id = 14, Title = "Moonshot", Genre = "Drama" },
+                new DVD { Id = 15, Title = "Kadosh", Genre = "Drama" },
+                new DVD { Id = 16, Title = "Stanley Kubrick: A Life in Pictures", Genre = "Documentary" },
+                new DVD { Id = 17, Title = "Clown and the Kid, The", Genre = "Drama" },
+                new DVD { Id = 18, Title = "Confetti", Genre = "Comedy" },
+                new DVD { Id = 19, Title = "Setup (Set Up)", Genre = "Action|Crime|Drama" },
+                new DVD { Id = 20, Title = "Captain Video: Master of the Stratosphere", Genre = "Adventure|Sci-Fi" },
+                new DVD { Id = 21, Title = "Underworld: Evolution", Genre = "Action|Fantasy|Horror" },
+                new DVD { Id = 22, Title = "Nothing Left to Fear", Genre = "Horror" },
+                new DVD { Id = 23, Title = "Shanghai Gesture, The", Genre = "Drama|Film-Noir" },
+                new DVD { Id = 24, Title = "In My Father's Den", Genre = "Drama" },
+                new DVD { Id = 25, Title = "Scapegoat, The", Genre = "Drama" },
+                new DVD { Id = 26, Title = "None But the Lonely Heart", Genre = "Drama|Romance" },
+                new DVD { Id = 27, Title = "Cameron's Closet", Genre = "Horror" },
+                new DVD { Id = 28, Title = "Inferno", Genre = "Drama" },
+                new DVD { Id = 29, Title = "Splatter University", Genre = "Horror" },
+                new DVD { Id = 30, Title = "Flash Point", Genre = "Action" }
 
-           };
+            };
 
             var allBooks = new List<Book>
             {
@@ -66,21 +66,53 @@ namespace GenericsExample
                 new Book { Id = 20, Author = "James Joyce", Title = "Ulysses" },
                 new Book { Id = 21, Author = "Franz Kafka", Title = "Stories" },
             };
-        
+
+            //instace of the BookPager from BookPager.cs
+            var bookPager = new BookPager();
+            bookPager.AllRecords = allBooks;
+
             Console.WriteLine("Which listings would you like to see?");
             Console.WriteLine("1. Movies");
             Console.WriteLine("2. Books");
 
+            //whatever the user selects then it gets captured/saved in the variable
             var selection = Console.ReadLine();
 
             if (selection == "1")
             {
-                allMovies.ForEach(m => Console.WriteLine($"{m.Title} ({m.Genre})"));
+                allMovies.ForEach(m => Console.WriteLine($"{m.Id}: {m.Title} ({m.Genre})"));
             }
 
             if (selection == "2")
             {
-                allBooks.ForEach(b => Console.WriteLine($"{b.Title} by {b.Author}"));
+                var firstPage = bookPager.GetCurrentPage();
+                firstPage.ForEach(b => Console.WriteLine($"{b.Id}: {b.Title} by {b.Author}"));
+
+                //able to go forward and backwards in the list of 5
+                while (true)
+                {
+                    Console.WriteLine("Type Next or Prev to go forward or back");
+                    var forwardOrBack = Console.ReadLine();
+
+                    //clear console so it won't show the previous 5 when you click next/prev
+                    Console.Clear();
+
+                    if (forwardOrBack == "Next")
+                    {
+                        var nextPage = bookPager.GetNextPage();
+                        nextPage.ForEach(b => Console.WriteLine($"{b.Id}: {b.Title} by {b.Author}"));
+                    }
+                    else if (forwardOrBack == "Prev")
+                    {
+                        var previousPage = bookPager.GetPreviousPage();
+                        previousPage.ForEach(b => Console.WriteLine($"{b.Id}: {b.Title} by {b.Author}"));
+                    }
+                    //gets out of the loop with the use of 'break'
+                    else
+                    {
+                        break;
+                    }
+                }
             }
         }
     }
